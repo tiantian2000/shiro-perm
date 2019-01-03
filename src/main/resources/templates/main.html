@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro"
+>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>管理中心</title>
+    <link rel="stylesheet" th:href="@{/css/pintuer.css}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script th:src="@{/bootstrap/js/jquery-1.11.1.min.js}"></script>
+
+    <STYLE type=text/css>
+        /** 美化iframe滚动条 */
+        BODY {
+            SCROLLBAR-FACE-COLOR: #e8e7e7;
+            SCROLLBAR-HIGHLIGHT-COLOR: #ffffff;
+            SCROLLBAR-SHADOW-COLOR: #ffffff;
+            SCROLLBAR-3DLIGHT-COLOR: #cccccc;
+            SCROLLBAR-ARROW-COLOR: #03B7EC;
+            SCROLLBAR-TRACK-COLOR: #EFEFEF;
+            SCROLLBAR-DARKSHADOW-COLOR: #b2b2b2;
+            SCROLLBAR-BASE-COLOR: #000000;
+        }
+    </STYLE>
+
+</head>
+<body style="background-color:#f2f9fd;">
+<div class="header bg-main">
+  <div class="logo margin-big-left fadein-top">
+    <h1><img th:src="@{/images/y.jpg}" class="radius-circle rotate-hover" height="50" alt="" />Shiro权限管理系统</h1>
+  </div>
+  <div class="head-l"><a class="button button-little bg-green" href="#" ><span class="icon-home"></span><shiro:principal property="username"/></a> &nbsp;&nbsp;<a class="button button-little bg-red" th:href="@{'/logout'}"><span class="icon-power-off"></span> 退出登录</a> </div>
+</div>
+<div class="leftnav">
+  <div class="leftnav-title"><strong><span class="icon-list"></span>菜单列表</strong></div>
+   <shiro:hasRole name="admin">　
+	  <h2><span class="icon-user"></span>基本设置</h2>
+	  <ul style="display:block">
+	 	<li><a href="user/list" target="right"><span class="icon-caret-right"></span>用户管理</a></li>
+	    <li><a href="role/list" target="right"><span class="icon-caret-right"></span>角色管理</a></li>
+	    <li><a href="perm/list" target="right"><span class="icon-caret-right"></span>权限管理</a></li>
+	  </ul>   
+	</shiro:hasRole>
+  	<!--hasAnyRoles标签 ：验证当前用户是否属于以下任意一个角色-->
+  	 <shiro:hasAnyRoles name="admin,buyer">　
+	  <h2><span class="icon-pencil-square-o"></span>申请管理</h2>
+	  <ul>
+	    <li><a href="tour" target="right"><span class="icon-caret-right"></span>采购申请</a></li>
+	    <li><a href="strategy" target="right"><span class="icon-caret-right"></span>申报查询</a></li>
+	    <li><a href="theme" target="right"><span class="icon-caret-right"></span>信息咨询</a></li>
+	  </ul>
+	</shiro:hasAnyRoles>
+	<shiro:hasAnyRoles name="admin,treasurer">　
+	  <h2><span class="icon-pencil-square-o"></span>财务管理</h2>
+	  <ul>
+	    <li><a href="tour" target="right"><span class="icon-caret-right"></span>采购资金管理</a></li>
+	    <li><a href="strategy" target="right"><span class="icon-caret-right"></span>合同付款统计</a></li>
+	  </ul>
+	</shiro:hasAnyRoles>
+</div>
+<script type="text/javascript">
+$(function(){
+  $(".leftnav h2").click(function(){
+	  $(this).next().slideToggle(200);	
+	  $(this).toggleClass("on"); 
+  })
+  $(".leftnav ul li a").click(function(){
+	    $("#a_leader_txt").text($(this).text());
+  		$(".leftnav ul li a").removeClass("on");
+		$(this).addClass("on");
+  })
+});
+</script>
+
+<div class="admin">
+    <iframe scrolling="auto" rameborder="0" src="info" name="right" width="100%" height="100%"></iframe>
+</div>
+
+</body>
+</html>
