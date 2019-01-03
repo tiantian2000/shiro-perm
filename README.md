@@ -7,8 +7,8 @@ Springboot+Shiro+Thymeleaf
 
 
 <h2>项目截图<h2>
-<img src="https://github.com/tiantian2000/shiro-perm/blob/gh-pages/示例.PNG"/>
-<img src="https://github.com/tiantian2000/shiro-perm/blob/gh-pages/示例1.PNG"/>
+<img src="https://github.com/tiantian2000/shiro-perm/blob/gh-pages/示例.jpg"/>
+<img src="https://github.com/tiantian2000/shiro-perm/blob/gh-pages/示例1.jpg"/>
 
 
 
