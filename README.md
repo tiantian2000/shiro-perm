@@ -3,7 +3,7 @@
 基于Shiro的权限管理系统
 
 <h2>技术栈</h2>
-Springboot+Shiro+Thymeleaf
+Springboot+Shiro+Mybatis+Thymeleaf
 
 
 <h2>项目截图<h2>
